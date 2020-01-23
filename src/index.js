@@ -115,15 +115,13 @@ class ViewModelRecentDocuments {
   }
 
   /**
-   * Queries the hooks for recent documents and searches the storage provider.
+   * Queries for recent documents and searches the storage provider.
    * @param {Object} viewModel - A Uttori view-model object.
    * @param {Object} context - A Uttori-like context.
    * @param {Object} context.config - A provided configuration to use.
    * @param {String} context.config.key - The key to add the array of documents to on the view-model.
    * @param {Number} context.config.limit - The maximum number of documents to return.
    * @param {String[]} context.config.ignore_slugs - A list of slugs to not consider when fetching recent documents.
-   * @param {Object} context.hooks - An event system / hook system to use.
-   * @param {Function} context.hooks.fetch - An event execution function.
    * @param {Object} context.storageProvider - A provided Uttori StorageProvider instance.
    * @param {Function} context.storageProvider.getQuery - Access method for getting documents.
    * @return {Object} The provided view-model document.
@@ -133,9 +131,6 @@ class ViewModelRecentDocuments {
    *     [ViewModelRecentDocuments.configKey]: {
    *       ...,
    *     },
-   *   },
-   *   hooks: {
-   *     fetch: () => { ... },
    *   },
    *   storageProvider: {
    *     getQuery: (query) => { ... }

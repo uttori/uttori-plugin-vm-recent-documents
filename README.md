@@ -129,7 +129,7 @@ ViewModelRecentDocuments.register(context);
 <a name="ViewModelRecentDocuments.callback"></a>
 
 ### ViewModelRecentDocuments.callback(viewModel, context) ⇒ <code>Object</code>
-Queries the hooks for recent documents and searches the storage provider.
+Queries for recent documents and searches the storage provider.
 
 **Kind**: static method of [<code>ViewModelRecentDocuments</code>](#ViewModelRecentDocuments)  
 **Returns**: <code>Object</code> - The provided view-model document.  
@@ -142,8 +142,6 @@ Queries the hooks for recent documents and searches the storage provider.
 | context.config.key | <code>String</code> | The key to add the array of documents to on the view-model. |
 | context.config.limit | <code>Number</code> | The maximum number of documents to return. |
 | context.config.ignore_slugs | <code>Array.&lt;String&gt;</code> | A list of slugs to not consider when fetching recent documents. |
-| context.hooks | <code>Object</code> | An event system / hook system to use. |
-| context.hooks.fetch | <code>function</code> | An event execution function. |
 | context.storageProvider | <code>Object</code> | A provided Uttori StorageProvider instance. |
 | context.storageProvider.getQuery | <code>function</code> | Access method for getting documents. |
 
@@ -154,9 +152,6 @@ const context = {
     [ViewModelRecentDocuments.configKey]: {
       ...,
     },
-  },
-  hooks: {
-    fetch: () => { ... },
   },
   storageProvider: {
     getQuery: (query) => { ... }
