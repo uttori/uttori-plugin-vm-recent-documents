@@ -48,7 +48,6 @@
     "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "release-it": "^13.6.3",
-    "sinon": "^9.0.2",
     "tsd-jsdoc": "^2.5.0"
   },
   "files": [
@@ -80,7 +79,7 @@
     "exclude": []
   },
   "scripts": {
-    "docs": "jsdoc2md --private --example-lang js --template rm.hbs src/index.js > README.md; jsdoc2md --private --example-lang js src/vm-recent.js > docs/vm-recent.md",
+    "docs": "jsdoc2md --private --example-lang js --template rm.hbs src/vm-recent.js > README.md; jsdoc2md --private --example-lang js src/vm-recent.js > docs/vm-recent.md",
     "docs-serve": "docsify init ./docs && docsify serve ./docs",
     "lint": "eslint .",
     "make-types": "jsdoc -t node_modules/tsd-jsdoc/dist -r ./src --destination ./; mv types.d.ts types/index.d.ts",
