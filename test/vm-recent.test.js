@@ -97,7 +97,7 @@ test('ViewModelRecentDocuments.validateConfig(config, _context): can validate', 
   });
 });
 
-test('ViewModelRelatedDocuments.callback(viewModel, context): returns the input when an invalid structure is provided', async (t) => {
+test('ViewModelRecentDocuments.callback(viewModel, context): returns the input when an invalid structure is provided', async (t) => {
   t.plan(1);
   const output = await ViewModelRecentDocuments.callback(null, { config: { ...config, [ViewModelRecentDocuments.configKey]: { key: 'recentDocs', limit: 0 } }, hooks });
   t.is(output, null);
