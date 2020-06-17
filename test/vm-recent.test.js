@@ -1,6 +1,7 @@
+// @ts-nocheck
 /* eslint-disable security/detect-non-literal-fs-filename */
 const test = require('ava');
-const ViewModelRecentDocuments = require('../src');
+const { ViewModelRecentDocuments } = require('../src');
 
 const config = {
   [ViewModelRecentDocuments.configKey]: {
@@ -10,8 +11,9 @@ const config = {
     limit: 1,
   },
 };
-const storageProvider = {
-  getQuery: (_query) => [
+const hooks = {
+  on: () => {},
+  fetch: () => [
     {
       updateDate: null,
       createDate: new Date('2019-04-20').toISOString(),
@@ -95,10 +97,16 @@ test('ViewModelRecentDocuments.validateConfig(config, _context): can validate', 
   });
 });
 
+test('ViewModelRelatedDocuments.callback(viewModel, context): returns the input when an invalid structure is provided', async (t) => {
+  t.plan(1);
+  const output = await ViewModelRecentDocuments.callback(null, { config: { ...config, [ViewModelRecentDocuments.configKey]: { key: 'recentDocs', limit: 0 } }, hooks });
+  t.is(output, null);
+});
+
 test('ViewModelRecentDocuments.callback(viewModel, context): adds an empty array when limit is less than 1', async (t) => {
   t.plan(1);
   const viewModel = {};
-  const output = await ViewModelRecentDocuments.callback(viewModel, { config: { ...config, [ViewModelRecentDocuments.configKey]: { key: 'editedDocs', limit: 0 } }, storageProvider });
+  const output = await ViewModelRecentDocuments.callback(viewModel, { config: { ...config, [ViewModelRecentDocuments.configKey]: { key: 'editedDocs', limit: 0 } }, hooks });
   t.deepEqual(output, {
     editedDocs: [],
   });
@@ -107,7 +115,7 @@ test('ViewModelRecentDocuments.callback(viewModel, context): adds an empty array
 test('ViewModelRecentDocuments.callback(viewModel, context): can return recent documents', async (t) => {
   t.plan(1);
   const viewModel = {};
-  const output = await ViewModelRecentDocuments.callback(viewModel, { config, storageProvider });
+  const output = await ViewModelRecentDocuments.callback(viewModel, { config, hooks });
   t.deepEqual(output, {
     editedDocs: [
       {
