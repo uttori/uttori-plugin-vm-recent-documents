@@ -14,16 +14,18 @@ const config = {
 const hooks = {
   on: () => {},
   fetch: () => [
-    {
-      updateDate: null,
-      createDate: new Date('2019-04-20').toISOString(),
-      slug: 'good-title',
-    },
-    {
-      updateDate: new Date('2019-04-21').toISOString(),
-      createDate: new Date('2019-04-21').toISOString(),
-      slug: 'fake-title',
-    },
+    [
+      {
+        updateDate: null,
+        createDate: new Date('2019-04-20').toISOString(),
+        slug: 'good-title',
+      },
+      {
+        updateDate: new Date('2019-04-21').toISOString(),
+        createDate: new Date('2019-04-21').toISOString(),
+        slug: 'fake-title',
+      },
+    ],
   ],
 };
 

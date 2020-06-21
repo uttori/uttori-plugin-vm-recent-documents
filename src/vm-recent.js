@@ -163,7 +163,7 @@ class ViewModelRecentDocuments {
     const not_in = `"${ignore_slugs.join('", "')}"`;
     const query = `SELECT * FROM documents WHERE slug NOT_IN (${not_in}) ORDER BY updateDate DESC LIMIT ${limit}`;
     try {
-      results = await context.hooks.fetch('storage-query', query);
+      [results] = await context.hooks.fetch('storage-query', query);
     } catch (error) {
       /* istanbul ignore next */
       debug('Error:', error);
