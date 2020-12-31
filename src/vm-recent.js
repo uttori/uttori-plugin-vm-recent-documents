@@ -1,4 +1,4 @@
-const debug = require('debug')('Uttori.Plugin.ViewModel.RecentDocuments');
+let debug = () => {}; try { debug = require('debug')('Uttori.Plugin.ViewModel.RecentDocuments'); } catch {}
 
 /**
  * Uttori View Model Enrichment - Recent Documents
